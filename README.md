@@ -2,7 +2,7 @@
 Partial source and header files for New Haven game board map.  
 
 ## Introduction
-![New Haven](/images/mino/new_haven.png") 
+![New Haven](/images/mino/new_haven.png) 
 
 New Haven is a board game we were tasked with recreating using C++ for COMP 345 (Advanced Program Design with C++) at Concordia University in the semester of Winter 2020. **This writeup focuses only on the creation of the game board via parsing a custom map file, creating a graph structure, and performing a traversal to calculate points in terms of the resources collected on the map.** This all encompases roughly 800 lines of code, as requested. An important note, the project required us to use raw pointers for all class data members (including primitive types), so some of the references may seem unneccesarily complex. Also, functionalties like exception-handling, input guards, and memory management need to be reworked or implemented.
 
@@ -20,7 +20,7 @@ New Haven is a board game we were tasked with recreating using C++ for COMP 345 
 
 ## Overview
 
-![Class Diagram](/images/mino/ClassDiagram.png")
+![Class Diagram](/images/mino/ClassDiagram.png)
 
 ## Parsing the .gbmap file
 Below is a sample of a custom map file, `test.gbmap`:
@@ -107,9 +107,9 @@ for (int i = 0; i < totalNodes; i++)
 
 The above processes result in two isolated graphs, one for tiles and one for resources, respectively, as visualized below. 
 
-![Tile Nodes](/images/mino/tile_nodes.png") 
+![Tile Nodes](/images/mino/tile_nodes.png) 
 
-![Resource Nodes](/images/mino/resource_nodes.png") 
+![Resource Nodes](/images/mino/resource_nodes.png) 
 
 The challenge now is to link the corresponding tile nodes to their respective cluster of 4 resource nodes. This correspondence is highlighted by the image directly above with the checkered pattern coloring of the resource nodes and the corresponding tile node ID in blue. In order for this to be done dynamically for any grid size and shape, we need to use the formulas below.  
 

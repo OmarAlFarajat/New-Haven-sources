@@ -2,7 +2,7 @@
 Partial source and header files for New Haven game board map.  
 
 ## Introduction
-<img src="../images/mino/new_haven.png"> 
+![New Haven](/images/mino/new_haven.png") 
 
 New Haven is a board game we were tasked with recreating using C++ for COMP 345 (Advanced Program Design with C++) at Concordia University in the semester of Winter 2020. **This writeup focuses only on the creation of the game board via parsing a custom map file, creating a graph structure, and performing a traversal to calculate points in terms of the resources collected on the map.** This all encompases roughly 800 lines of code, as requested. An important note, the project required us to use raw pointers for all class data members (including primitive types), so some of the references may seem unneccesarily complex. Also, functionalties like exception-handling, input guards, and memory management need to be reworked or implemented.
 
@@ -20,7 +20,7 @@ New Haven is a board game we were tasked with recreating using C++ for COMP 345 
 
 ## Overview
 
-<img class="ui fluid rounded centered image" src="../images/mino/ClassDiagram.png">
+![Class Diagram](/images/mino/ClassDiagram.png")
 
 ## Parsing the .gbmap file
 Below is a sample of a custom map file, `test.gbmap`:
@@ -42,7 +42,7 @@ DISABLE		8
 
 The above gbmap file will result in the gameboard shown below. Note the order of the resources from left-to-right in the gbmap file and how they correspond to the resources on the tile. 
 
-<img class="ui medium rounded centered image" src="../images/mino/test_gbmap.png"> 
+![GBMap Test](/images/mino/test_gbmap.png) 
 
 The parsing is done with a while-loop that iterates through the file line-by-line. The loop is continued if an empty or whitespaced line is detected. If no such line is detected, then it is tokenized and the first token is compared in an if-else block where matching certain keywords will determine in which containers the data is stored.  Lines that do not start with any of the keywords are simply ignored and this behaviour can be used to include comments as is done in the test file with the '#' symbol.  
 
@@ -107,13 +107,13 @@ for (int i = 0; i < totalNodes; i++)
 
 The above processes result in two isolated graphs, one for tiles and one for resources, respectively, as visualized below. 
 
-<img class="ui large rounded centered image" src="../images/mino/tile_nodes.png">  
+![Tile Nodes](/images/mino/tile_nodes.png") 
 
-<img class="ui large rounded centered image" src="../images/mino/resource_nodes.png"> 
+![Resource Nodes](/images/mino/resource_nodes.png") 
 
 The challenge now is to link the corresponding tile nodes to their respective cluster of 4 resource nodes. This correspondence is highlighted by the image directly above with the checkered pattern coloring of the resource nodes and the corresponding tile node ID in blue. In order for this to be done dynamically for any grid size and shape, we need to use the formulas below.  
 
-<img class="ui large rounded centered image" src="../images/mino/equation.png">  
+![Equations](/images/mino/equation.png)
 
 The equations above are implemented in the function `Graph::linkResourceNodes` using a for-loop on each of the tile nodes as shown below.  
 
@@ -142,12 +142,12 @@ for (int i = 0; i < totalNodes; i++)
 
 The two graphs combined result in a three-dimensional grid graph that resembles a trapazoidal prism, as shown below. For simplicity, a 2x2 tile grid graph is shown instead of the 3x3 example from `test.gbmap`.  
 
-<img class="ui fluid rounded centered image" src="../images/mino/2x2_grid_visual.png">
+![2x2 Grid](/images/mino/2x2_grid_visual.png)
 
 ## Calculating harvested resources using conditional DFS
 In New Haven, players accumulate resources to construct buildings in their villages. Resources are accumulated by placing a harvest tile onto the game board. By matching adjacent resources, they are able to create chains of accumulating resources. In the example below, the player placed a harvest tile at row 2, column 2 (highlighted in blue). This results in an accumulation of 12 timber (red) and 4 sheep (green). 
 
-<img class="ui medium rounded centered image" src="../images/mino/adj.png">  
+![Adjacencies](/images/mino/adj.png)
 
 Our graph structure comes in handy here. In `GBMap.cpp`, the function `GBMap::calcResourceAdjacencies` will perform a DFS traversal starting on each of the resource nodes on the placed harvest tile. Once the traversal is complete, a count is done for each of the resource types to determine the amount accumulated. Once the amounts are recorded, the `visited` state of all the nodes are reset.   
 

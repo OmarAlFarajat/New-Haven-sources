@@ -2,7 +2,7 @@
 Partial source and header files for New Haven game board map.  
 
 ## Introduction
-<img class="ui medium rounded centered image" src="../images/mino/new_haven.png"> 
+<img src="../images/mino/new_haven.png"> 
 
 New Haven is a board game we were tasked with recreating using C++ for COMP 345 (Advanced Program Design with C++) at Concordia University in the semester of Winter 2020. **This writeup focuses only on the creation of the game board via parsing a custom map file, creating a graph structure, and performing a traversal to calculate points in terms of the resources collected on the map.** This all encompases roughly 800 lines of code, as requested. An important note, the project required us to use raw pointers for all class data members (including primitive types), so some of the references may seem unneccesarily complex. Also, functionalties like exception-handling, input guards, and memory management need to be reworked or implemented.
 

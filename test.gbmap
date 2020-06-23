@@ -1,0 +1,12 @@
+# Length and height of the grid
+LENGTH	3
+HEIGHT	3
+
+#Row 0, Column 0
+RESOURCE	0	STONE	SHEEP	TIMBER	WHEAT
+
+#Row 1, Column 2
+RESOURCE	5	TIMBER	WHEAT	WHEAT	TIMBER
+
+#Row 2, Column 2
+DISABLE		8

@@ -4,7 +4,7 @@ Partial source and header files for New Haven game board map.
 ## Introduction
 ![New Haven](/images/mino/new_haven.PNG) 
 
-New Haven is a board game we were tasked with recreating using C++ for COMP 345 (Advanced Program Design with C++) at Concordia University in the semester of Winter 2020. **This writeup focuses only on the creation of the game board via parsing a custom map file, creating a graph structure, and performing a traversal to calculate points in terms of the resources collected on the map.** This all encompases roughly 800 lines of code, as requested. An important note, the project required us to use raw pointers for all class data members (including primitive types), so some of the references may seem unneccesarily complex. Also, functionalties like exception-handling, input guards, and memory management need to be reworked or implemented.
+New Haven is a board game we were tasked with recreating using C++ for COMP 345 (Advanced Program Design with C++) at Concordia University in the semester of Winter 2020. **This writeup focuses only on the creation of the game board via parsing a custom map file, creating a graph structure, and performing a traversal to calculate points in terms of the resources collected on the map.** This all encompases roughly 800 lines of code, as requested. An important note, the project required us to use raw pointers for all class data members (including primitive types), so some of the references may seem unnecessarily complex. Also, functionalities like exception-handling, input guards, and memory management need to be reworked or implemented.
 
 *And without further ado...*
 
@@ -140,7 +140,7 @@ for (int i = 0; i < totalNodes; i++)
 }
 ```
 
-The two graphs combined result in a three-dimensional grid graph that resembles a trapazoidal prism, as shown below. For simplicity, a 2x2 tile grid graph is shown instead of the 3x3 example from `test.gbmap`.  
+The two graphs combined result in a three-dimensional grid graph that resembles a trapezoidal prism, as shown below. For simplicity, a 2x2 tile grid graph is shown instead of the 3x3 example from `test.gbmap`.  
 
 ![2x2 Grid](/images/mino/2x2_grid_visual.png)
 
@@ -182,7 +182,7 @@ void GBMap::calcResourceAdjacencies(TileNode* root, std::map<ResourceType, int> 
 }
 ```
 
-In `Graph.cpp`, the function `Graph::DFS_ByType`, shown below, peforms a conditional traversal, i.e. it continues to traverse so long as:  
+In `Graph.cpp`, the function `Graph::DFS_ByType`, shown below, performs a conditional traversal, i.e. it continues to traverse so long as:  
 * The edge exists i.e. is not `nullptr`. 
 * The node has not been visited.
 * The node is enabled.
